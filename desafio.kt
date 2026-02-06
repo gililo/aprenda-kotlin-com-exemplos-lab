@@ -66,6 +66,57 @@ class Formacao(val nome: String, val nivel: Nivel, val conteudos: MutableSet<Con
             }
     	}
     }
+
+    // Funcao para adicionar Conteudos Educacionais a uma Formacao
+    // Permite adicionar um unico conteudo ou uma lista de conteudos
+    fun addConteudo(vararg novosConteudos: ConteudoEducacional){
+ 
+        // Criar variavel de verificacao se algum conteudo foi adicionado a alguma Formacao
+        var adicionou = false
+
+        // Lista de ConteudosEducacionais duplicados
+  		val conteudosDuplicados = mutableSetOf<ConteudoEducacional>()
+            
+		// Percorre todos os conteudos recebidos na vararg
+        for (novoConteudo in novosConteudos){           
+
+            // Se conteudo foi adicionado, informa na tela
+            // add -> retorna true se adicionou conteudo, ou false se era duplicado
+            if (conteudos.add(novoConteudo)) {
+				
+				// Imprime o cabecalho se adicionou for false
+                if (!adicionou){
+                	
+                    // Imprime um cabecalho para mostrar os novos conteudos adicionados a Formacao
+    	    		println ("LISTA DE CONTEUDOS ADICIONADOS")
+        			println ("")
+					
+					// Muda a variavel para true para nao imprimir novamente
+                    adicionou = true
+                }
+                
+                // Imprime o conteudo que foi adicionado e em qual formacao
+                println("-> ${novoConteudo.nome} adicionado a Formacao: $nome")
+            }
+            // Se era duplicado, adiciona a lista de duplicados
+            else {
+            	conteudosDuplicados.add(novoConteudo)
+            }
+            
+            // Verifica se existiu conteudo duplicado e imprime
+            if (conteudosDuplicados.isNotEmpty()){
+                 // Imprime um cabecalho para mostrar os conteudos que nao foram adicionados porque ja faziam parte da Formacao
+                println ("LISTA DE CONTEUDOS NAO ADICIONADOS PORQUE JA FAZEM PARTE DA FORMACAO")
+                println ("")
+                
+                for ( conteudoDuplicado in conteudosDuplicados){
+                	println("-> ${conteudoDuplicado.nome} ja consta na Formacao: $nome")    
+                }
+            }
+        }
+        
+        println("")
+    }  
 }
 
 fun main() {
