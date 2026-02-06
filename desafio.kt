@@ -40,7 +40,6 @@ class Formacao(val nome: String, val nivel: Nivel, val conteudos: MutableSet<Con
         {
     		println("-> Aluno: ${novoAluno.nome}, ID: ${novoAluno.id} foi matriculado no curso: ${this.nome}")
         }
-        
         println ("")
     }
 
@@ -65,6 +64,7 @@ class Formacao(val nome: String, val nivel: Nivel, val conteudos: MutableSet<Con
 	            println("Aluno: ${cancelado.nome}, ID: ${cancelado.id} teve sua matricula cancelada no curso: ${this.nome}")
             }
     	}
+        println("")
     }
 
     // Funcao para adicionar Conteudos Educacionais a uma Formacao
@@ -113,10 +113,27 @@ class Formacao(val nome: String, val nivel: Nivel, val conteudos: MutableSet<Con
                 	println("-> ${conteudoDuplicado.nome} ja consta na Formacao: $nome")    
                 }
             }
-        }
-        
+        }   
         println("")
-    }  
+    }
+
+    // Calcula a carga horaria total da formacao somando a carga horaria de todos os conteudos 
+    fun cargaHorariaFormacao(): Int {
+        
+        // Inicializar variavel com 0
+        var cargaHorariaTotal = 0
+        
+        // Percorre todo o Set de Conteudo Educacional existente
+        for (conteudo in conteudos){
+            
+            // Soma a carga horario de todos os conteudos de uma formacao
+            cargaHorariaTotal += conteudo.cargaHoraria
+        }
+
+        // Retorna a soma da carga horario de uma formacao
+        return cargaHorariaTotal
+        println("")
+    }
 }
 
 fun main() {
