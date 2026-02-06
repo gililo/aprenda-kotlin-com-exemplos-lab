@@ -1,6 +1,6 @@
-// [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
-
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
+// Define os niveis fixos possiveis da Formacao
+// enum -> Conjunto fechado de opcoes para o nível da formacao (nao aceita qualquer texto)
+enum class Nivel { Basico, Intermediario, Avancado }
 
 class Usuario
 
