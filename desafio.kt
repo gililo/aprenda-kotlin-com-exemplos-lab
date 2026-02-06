@@ -8,7 +8,8 @@ data class ConteudoEducacional(val nome: String, val cargaHoraria: Int)
 // Representa um Aluno (nome e id)
 data class Aluno(val id: String, val nome: String)
 
-class Usuario
+// Representa a Formacao (nome, nivel e lista de conteudos, alem de suas funcoes)
+class Formacao(val nome: String, val nivel: Nivel, val conteudos: MutableSet<ConteudoEducacional>)
 
 data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
 
