@@ -132,11 +132,39 @@ class Formacao(val nome: String, val nivel: Nivel, val conteudos: MutableSet<Con
 
         // Retorna a soma da carga horario de uma formacao
         return cargaHorariaTotal
-        println("")
     }
 }
 
 fun main() {
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+
+    // Simulando alguns cenários de teste
+    val formacao1 = Formacao("Mobile Developer", Nivel.Intermediario, mutableSetOf())
+    val formacao2 = Formacao("AI Youtuber Creator", Nivel.Basico, mutableSetOf())
+
+    val cont1 = ConteudoEducacional("Introdução a Experiência e Sistemas Nativos Android", 1)
+    val cont2 = ConteudoEducacional("Conhecendo o Kotlin e sua Documentacao Oficial", 1)
+    val cont3 = ConteudoEducacional("Star and Onboarding", 1)
+	val cont4 = ConteudoEducacional("Crie seu Cockpit de Criacao", 1)
+    val cont5 = ConteudoEducacional("Meu Co-Pilot AI Creator no Notion", 1)
+    val cont6 = ConteudoEducacional("Star and Onboarding", 1)
+        
+    formacao1.addConteudo(cont1, cont2)
+    formacao2.addConteudo(cont3, cont4, cont5)
+    formacao2.addConteudo(cont6)
+    
+    val aluno1 = Aluno("1", "Aluno 1")
+    val aluno2 = Aluno("2", "Aluno 2")
+    val aluno3 = Aluno("3", "Aluno 3")
+
+    formacao1.matricular(aluno1)
+	formacao2.matricular(aluno2, aluno3, aluno1)
+    
+    formacao1.cancelarMatricula(aluno1)
+
+    // Imprime um cabecalho para mostrar os conteudos que nao foram adicionados porque ja faziam parte da Formacao
+    println ("CARGA HORARIA DA FORMACAO")
+    println ("")
+    
+    println("-> ${formacao1.nome}: ${formacao1.cargaHorariaFormacao()}h")
+	println("-> ${formacao2.nome}: ${formacao2.cargaHorariaFormacao()}h")
 }
