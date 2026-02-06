@@ -11,10 +11,13 @@ data class Aluno(val id: String, val nome: String)
 // Representa a Formacao (nome, nivel e lista de conteudos, alem de suas funcoes)
 class Formacao(val nome: String, val nivel: Nivel, val conteudos: MutableSet<ConteudoEducacional>){
 
-    // Alunos Inscritos sao armanezados em um Set para garantir que nao existiram duplicados
+    // Alunos Inscritos e Cancelados sao armanezados em um set para garantir que nao existiram duplicados
     
 	// Alunos matriculados
     val inscritos = mutableSetOf<Aluno>()
+
+    // Alunos que cancelaram a matricula
+    val cancelados = mutableSetOf<Aluno>()
 
     // Efetua matricula de um aluno ou de uma lista de alunos
     fun matricular(vararg alunos: Aluno) { 
@@ -39,6 +42,29 @@ class Formacao(val nome: String, val nivel: Nivel, val conteudos: MutableSet<Con
         }
         
         println ("")
+    }
+
+    // Cancela matricula de um aluno ou de uma lista de alunos
+    fun cancelarMatricula(vararg alunos: Aluno) { 
+        
+        // Percorre a lista de alunos que cancelaram sua matricula
+        for (cancelado in alunos)
+        {
+            // Remove o aluno que cancelou sua matricula da lista de inscritos
+            // remove -> Retorna true se o aluno estava matriculado e foi removido agora
+            if (inscritos.remove(cancelado))
+            {
+                // Adiciona o aluno que teve sua matricula cancelada no Set de cancelados
+                cancelados.add(cancelado)
+                
+                // Imprime um cabecalho para mostrar os alunos que tiveram sua matricula cancelada
+                println ("LISTA DE ALUNOS COM MATRICULA CANCELADA")
+                println ("")
+                        
+                // Imprime o aluno que teve a matricula cancelada na tela
+	            println("Aluno: ${cancelado.nome}, ID: ${cancelado.id} teve sua matricula cancelada no curso: ${this.nome}")
+            }
+    	}
     }
 }
 
