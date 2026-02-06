@@ -2,6 +2,12 @@
 // enum -> Conjunto fechado de opcoes para o nível da formacao (nao aceita qualquer texto)
 enum class Nivel { Basico, Intermediario, Avancado }
 
+// Representa um Conteudo Educacional (aulas, projetos, materiais, etc)
+data class ConteudoEducacional(val nome: String, val cargaHoraria: Int)
+
+// Representa um Aluno (nome e id)
+data class Aluno(val id: String, val nome: String)
+
 class Usuario
 
 data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
